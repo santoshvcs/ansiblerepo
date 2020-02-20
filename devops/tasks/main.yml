@@ -1,0 +1,15 @@
+- name: install tomcat
+  yum:
+    name: tomcat
+    state: latest
+- name: start service
+  service:
+    name: tomcat
+    state: started
+- name: copy jenkins.war to webapps
+  copy:
+    src: "{{ src_path }}"
+    dest: "{{ dest_path }}"
+      
+  notify: restart tomcat
+  
